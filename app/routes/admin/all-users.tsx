@@ -2,7 +2,7 @@ import React from "react";
 const AllUsers = () => {
 
     return (
-        <div>
+        <div className="all-users">
             Users Table
         </div>
     )

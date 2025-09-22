@@ -350,7 +350,7 @@
     .container {
       @apply flex flex-col justify-between h-full;
       nav {
-        @apply flex flex-col gap-3.5 pt-9;
+        @apply flex flex-col gap-4.5 pt-9;
       }
     }
   }
