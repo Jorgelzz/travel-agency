@@ -1,4 +1,5 @@
 import type { AxisModel } from "@syncfusion/ej2-react-charts";
+import { format } from "date-fns";
 
 export const sidebarItems = [
   {
@@ -139,4 +140,57 @@ export const RIGHT_CONFETTI = {
   ...CONFETTI_SETTINGS,
   angle: 135,
   origin: { x: 1, y: 1 },
+};
+
+export const allTrips = [
+  {
+    id: 1,
+    name: "Tropical Rewind",
+    imageUrls: ["/assets/images/sample1.jpg"],
+    dateJoined: format("2023-08-15", "MMMM dd, yyyy"),
+    itinerary: [{ location: "Thailand" }],
+    tags: ["Adventure", "Culture"],
+    travelStyle: "Solo",
+    estimatedPrice: "$1,000",
+  },
+  {
+    id: 2,
+    name: "French Reverie",
+    imageUrls: ["/assets/images/sample2.jpg"],
+    dateJoined: format("2023-08-15", "MMMM dd, yyyy"),
+    itinerary: [{ location: "Paris" }],
+    tags: ["Relaxation", "Culinary"],
+    travelStyle: "Family",
+    estimatedPrice: "$2,000",
+  },
+  {
+    id: 3,
+    name: "Zen Break",
+    imageUrls: ["/assets/images/sample3.jpg"],
+    dateJoined: format("2023-08-15", "MMMM dd, yyyy"),
+    itinerary: [{ location: "Japan" }],
+    tags: ["Shopping", "Luxury"],
+    travelStyle: "Couple",
+    estimatedPrice: "$3,000",
+  },
+  {
+    id: 4,
+    name: "Adventure in Westeros",
+    imageUrls: ["/assets/images/sample4.jpg"],
+    dateJoined: format("2023-08-15", "MMMM dd, yyyy"),
+    itinerary: [{ location: "Croatia" }],
+    tags: ["Historical", "Culture"],
+    travelStyle: "Friends",
+    estimatedPrice: "$4,000",
+  },
+];
+export const user = {
+  name: "John Doe",
+};
+export const dashboardData = {
+  totalUsers: 1200,
+  usersJoined: { today: 25, thisWeek: 150, currentMonth: 600 },
+  totalTrips: 100,
+  tripsCreated: { currentMonth: 80, lastMonth: 70 },
+  userRole: { totalAdmins: 5, totalEditors: 10, totalViewers: 1185 },
 };

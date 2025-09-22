@@ -1,4 +1,4 @@
-import { calculateTrendPercentage } from "lib/utils";
+import { calculateTrendPercentage, cn } from "lib/utils";
 
 declare interface StatsCardProps {
   headerTitle: string;
@@ -8,34 +8,40 @@ declare interface StatsCardProps {
 
 const StatsCard = ({ headerTitle, value, currentMonth }: StatsCardProps) => {
   const { trend, percentage } = calculateTrendPercentage(value, currentMonth);
-  const isDrecrement = trend === "decrement";
+  const isDecrement = trend === "decrement";
   return (
-    <div className="stats-card">
+    <article className="stats-card">
       <h3 className="text-base font-medium">{headerTitle}</h3>
       <div className="content">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
           <h2 className="text-4xl font-semibold">{value}</h2>
-          <div className="flex items-center gap-2">
-            <figure className="flex items-center">
+          <div className="flex items-center gap-3">
+            <figure className="flex items-center gap-1">
               <img
-                src={`/assets/icons/${isDrecrement ? "arrow-down-red" : "arrow-up-green"}.svg`}
-                alt="arrow"
+                src={`/assets/icons/${isDecrement ? "arrow-down-red" : "arrow-up-green"}.svg`}
+                className="size-5"
               />
-            </figure>
-            <figcaption className="text-sm font-medium" style={{ color: isDrecrement ? "#F87171" : "#22C55E" }}>
+              <figcaption
+                className={cn("text-sm font-medium", {
+                  "text-red-500": isDecrement,
+                  "text-green-500": !isDecrement,
+                })}
+              >
                 {Math.round(percentage)}%
-            </figcaption>
-             </div>
+              </figcaption>
+            </figure>
+            <p className="text-sm font-medium text-gray-100 truncate">
+              vs last month
+            </p>
+          </div>
         </div>
+        <img
+          src={`/assets/icons/${isDecrement ? "decrement" : "increment"}.svg`}
+          alt=""
+          className="size-20 object-contain"
+        />
       </div>
-      <p className="text-sm">Current Month: {currentMonth}</p>
-      <p className="text-sm">Trend: {trend}</p>
-      <p
-        className={`text-sm ${percentage > 0 ? "text-green-500" : "text-red-500"}`}
-      >
-        Status: {percentage > 0 ? "Upward" : "Downward"}
-      </p>
-    </div>
+    </article>
   );
 };
 

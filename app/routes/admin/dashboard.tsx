@@ -1,16 +1,8 @@
-import { Header, StatsCard, TripCard } from "~/components";
+import { Header, StatsCard } from "~/components";
+import { allTrips, dashboardData, user  } from "~/constants";
 
 const Dashboard = () => {
-  const user = {
-    name: "John Doe",
-  };
-  const dashboardData = {
-    totalUsers: 1200,
-    usersJoined: { today: 25, thisWeek: 150, thisMonth: 600 },
-    totalTrips: 0,
-    tripsCreated: { currentMonth: 80, lastMonth: 70 },
-    userRole: { totalAdmins: 5, totalEditors: 10, totalViewers: 1185 },
-  };
+
   return (
     <main className="dashboard wrapper">
       <Header
@@ -18,27 +10,38 @@ const Dashboard = () => {
         description="Manage your admin dashboard and settings"
       />
       <section className="flex flex-col gap-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full">
           <StatsCard
             headerTitle="Total Users"
             value={dashboardData.totalUsers}
-            currentMonth={dashboardData.usersJoined.thisMonth}
-          />
-          <StatsCard
-            headerTitle="Users Joined"
-            value={dashboardData.usersJoined.today}
-            currentMonth={dashboardData.usersJoined.thisMonth}
+            currentMonth={dashboardData.usersJoined.currentMonth}
           />
           <StatsCard
             headerTitle="Total Trips"
             value={dashboardData.totalTrips}
             currentMonth={dashboardData.tripsCreated.currentMonth}
           />
+          <StatsCard
+            headerTitle="Active Users"
+            value={dashboardData.usersJoined.today}
+            currentMonth={dashboardData.usersJoined.currentMonth}
+          />
         </div>
       </section>
-
-      <TripCard />
-
+      <section className="flex flex-col gap-6">
+        <section className="container">
+          <h1 className="text-xl font-semibold">
+            Created Trips
+          </h1>
+          <div className="trip-grid">
+            {allTrips.slice(0, 4).map((trip) => (
+              <div key={trip.id} className="trip-card">
+                <img src={trip.imageUrls[0]} alt={trip.name} className="w-full h-32 object-cover rounded-md" />
+              </div>
+            ))}
+          </div>
+        </section>
+      </section>
     </main>
   );
 };
