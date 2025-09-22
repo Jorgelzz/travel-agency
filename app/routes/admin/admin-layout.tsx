@@ -5,12 +5,13 @@ import { MobileSideBar, NavItems } from "../../components";
 
 const AdminLayout = () => {
 
+
     return (
         <div className="admin-layout wrapper ">
             <MobileSideBar />
             <aside className="w-full max-w-[270px] hidden lg:block">
-                <SidebarComponent width={270} enableGestures={false}>
-                    <NavItems/>
+                <SidebarComponent width={270}>
+                    <NavItems handleClick={() => {}} />
                 </SidebarComponent>
             </aside>
             <aside className="children">

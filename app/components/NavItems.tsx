@@ -2,7 +2,7 @@ import { cn } from "lib/utils";
 import { Link, NavLink } from "react-router";
 import { sidebarItems } from "~/constants";
 
-const NavItems = () => {
+const NavItems = ({handleClick}: {handleClick: () => void}) => {
   const user = {
     name: "John Doe",
     email: "john.doe@example.com",
@@ -10,7 +10,7 @@ const NavItems = () => {
   }
   return (
     <section className="nav-items">
-      <Link to="/" className="link-logo">
+      <Link to="dashboard" className="link-logo">
         <img src="/assets/icons/logo.svg" alt="logo" className="size-[30px]" />
         <h1>TourVisist</h1>
       </Link>
@@ -25,8 +25,8 @@ const NavItems = () => {
                 cn("group nav-item", {
                   "!bg-primary-100 !text-white": isActive,
                 })
-              }
-            >
+              } onClick={handleClick}>
+
               {({ isActive }) => (
                 <>
                   <img

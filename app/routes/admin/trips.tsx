@@ -1,10 +1,11 @@
+import Header from "~/components/Header";
+
 const Trips = () => {
 
     return (
-        <div>
-            <h2>My Trips</h2>
-            <p>No trips booked yet.</p>
-        </div>
+       <main className="dashboard wrapper">
+              <Header title="Trips" description="Manage your trips and bookings" />
+       </main>
     );
 }
 
