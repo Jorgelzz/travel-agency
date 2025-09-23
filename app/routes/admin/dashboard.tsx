@@ -1,4 +1,4 @@
-import { Header, StatsCard } from "~/components";
+import { Header, StatsCard, TripCard } from "~/components";
 import { allTrips, dashboardData, user  } from "~/constants";
 
 const Dashboard = () => {
@@ -35,9 +35,14 @@ const Dashboard = () => {
           </h1>
           <div className="trip-grid">
             {allTrips.slice(0, 4).map((trip) => (
-              <div key={trip.id} className="trip-card">
-                <img src={trip.imageUrls[0]} alt={trip.name} className="w-full h-32 object-cover rounded-md" />
-              </div>
+              <TripCard 
+                id={trip.id.toString()}
+                name={trip.name}
+                location={trip.itinerary[0]?.location || "Unknown"}
+                imageUrl={trip.imageUrls[0]}
+                price={trip.estimatedPrice}
+                tags={trip.tags}
+              />
             ))}
           </div>
         </section>

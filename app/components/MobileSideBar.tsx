@@ -24,7 +24,7 @@ const MobileSideBar = () => {
         </button>
       </header>
         <SidebarComponent width={250} ref={(Sidebar) => (sidebar = Sidebar)}
-            enableGestures={true} showBackdrop={true} closeOnDocumentClick={true} >
+            enableGestures={true} showBackdrop={false} closeOnDocumentClick={true} >
             <NavItems handleClick={toggleSidebar} />
         </SidebarComponent>
     </div>
