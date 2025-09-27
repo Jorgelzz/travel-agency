@@ -13,9 +13,9 @@ const StatsCard = ({ headerTitle, value, currentMonth }: StatsCardProps) => {
     <article className="stats-card">
       <h3 className="text-base font-medium">{headerTitle}</h3>
       <div className="content">
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-4">
           <h2 className="text-4xl font-semibold">{value}</h2>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <figure className="flex items-center gap-1">
               <img
                 src={`/assets/icons/${isDecrement ? "arrow-down-red" : "arrow-up-green"}.svg`}
@@ -24,7 +24,7 @@ const StatsCard = ({ headerTitle, value, currentMonth }: StatsCardProps) => {
               <figcaption
                 className={cn("text-sm font-medium", {
                   "text-red-500": isDecrement,
-                  "text-green-500": !isDecrement,
+                  "text-success-500": !isDecrement,
                 })}
               >
                 {Math.round(percentage)}%
@@ -35,11 +35,13 @@ const StatsCard = ({ headerTitle, value, currentMonth }: StatsCardProps) => {
             </p>
           </div>
         </div>
-        <img
-          src={`/assets/icons/${isDecrement ? "decrement" : "increment"}.svg`}
-          alt=""
-          className="size-20 object-contain"
-        />
+        <div>
+          <img
+            src={`/assets/icons/${isDecrement ? "decrement" : "increment"}.svg`}
+            alt=""
+            className="w-32 h-16 object-contain object-right md:h-20 xl:w-36"
+          />
+        </div>
       </div>
     </article>
   );

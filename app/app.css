@@ -309,6 +309,13 @@
       }
     }
   }
+
+  /* Hide Syncfusion sidebar backdrop on desktop */
+  @media (min-width: 1024px) {
+    .e-sidebar-overlay {
+      display: none !important;
+    }
+  }
   .root-nav {
     @apply flex justify-between gap-4  items-center;
     a {

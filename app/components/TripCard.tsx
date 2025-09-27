@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import {
   ChipDirective,
   ChipListComponent,
@@ -14,24 +14,20 @@ const TripCard = ({
   price,
   tags,
 }: TripCardProps) => {
+  const path = useLocation().pathname;
   return (
-    <Link to={`/trips/${id}`} className="trip-card">
-      <img
-        src={imageUrl}
-        alt={name}
-        className="w-full h-32 object-cover rounded-md"
-      />
-      <div className="trip-info">
-        <h3 className="trip-name">{name}</h3>
+    <Link to={path == '/' ? `/trips/${id}` : path.startsWith('/travel/') ? `/travel/${id}` : `/trips/${id}`} className="trip-card">
+      <img src={imageUrl} alt={name} />
+      <article>
+        <h2>{name}</h2>
         <figure>
           <img
             src="/assets/icons/location-mark.svg"
-            alt="Location Icon"
-            className="size-6 inline-block"
-          />{" "}
-          {location}
+            className="size-4"
+            alt="red location marker icon indicating the trip destination"
+          />
         </figure>
-
+      </article>
         <div className="mt-5 pl-[18px] pr-3.5 pb-5">
           <ChipListComponent id="travel-chip">
             <ChipsDirective>
@@ -39,25 +35,17 @@ const TripCard = ({
                 <ChipDirective
                   key={index}
                   text={getFirstWord(tag)}
-                  cssClass={cn(
-                    index == 1
-                      ? "!bg-pink-100 !text-red-600"
-                      : "!bg-blue-100 !text-blue-800"
-                  )}
+                  cssClass={cn(index === 1 ? "!bg-pink-100 !text-pink-600" : "!bg-success-50 !text-success-700")}
                 />
               ))}
             </ChipsDirective>
           </ChipListComponent>
+          
         </div>
-        <p className="price-pill">{price}</p>
-        <div className="">
-          {tags.map((tag, index) => (
-            <span key={index} className="trip-tag">
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
+
+      <article className="tripCard-pill">
+        <h3 className="text-lg font-semibold">{price}</h3>
+      </article>
     </Link>
   );
 };
